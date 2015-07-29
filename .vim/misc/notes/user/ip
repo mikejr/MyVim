@@ -1,0 +1,36 @@
+ip
+
+https://app.getsentry.com/rovercom/production/issues/113889384/
+https://app.getsentry.com/rovercom/production/issues/114424441/
+https://app.getsentry.com/rovercom/production/issues/114390530/
+https://app.getsentry.com/rovercom/production/issues/114200046/
+
+### ForeignKeys to Conversation
+
+conversations.models.Request.conversation
+conversations.models.Message.conversation
+conversations.models.ServiceRelationship.furthest_out_booked_conversation
+conversations.models.Conversation.original_conversation
+conversations.models.MeetAndGreet.conversation
+metrics.models.ConversationAnnotation.conversation
+notifications.models.VoiceCall.conversation
+reviews.models.Review.conversation
+safety.models.SafetyAcknowledgement.conversation
+scrapesbook.models.AnimotoVideo.conversation
+sms.models.SMSConversationState.conversation
+stays.models.Rating.conversation
+
+> Any time one of these models is created and the conversation is also
+updated we have the possibility for a deadlock.
+
+### ForeignKeys on Conversation
+
+`agencies_agency`.`id`
+`people_person`.`id`
+`homes_home`.`id`
+`needs_need`.`id`
+`conversations_conversation`.`id`
+`services_providergroup`.`id`
+`services_service`.`id`
+`conversations_servicerelationship`.`id`
+`sitters_sitter`.`id`
